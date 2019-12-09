@@ -2,6 +2,11 @@ import java.time.LocalDate;
 
 public class Project {
 
+    public void approve() {
+        this.status=Status.IN_PROGRESS;
+    }
+
+
     enum Status {
         UNDER_REVIEW,
         APPROVED,
@@ -27,8 +32,17 @@ public class Project {
         this.creationDate = LocalDate.now();
     }
 
+    @Override
+    public String toString(){
+        return "projectID:"+code+"\n nameProject:"+name+"\n description:"+description+"\n expectedDuration:"+
+                expectedDuration;
+    }
     public String getName() {
         return name;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     public LocalDate getCreationDate() {

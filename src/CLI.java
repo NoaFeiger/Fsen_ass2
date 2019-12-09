@@ -1,4 +1,6 @@
-import java.awt.*;
+import java.sql.SQLOutput;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class CLI {
@@ -17,7 +19,7 @@ public class CLI {
 
         System.out.println("Home page!\n" +
                             "Please choose one of the following options:");
-        System.out.println("1) Login\n2) Register\n3) Exit");
+        System.out.println("1) Login submitter \n2) Login As Student \n3) Register\n4) Exit");
 
         int choice = Integer.parseInt(scanner.nextLine());
 
@@ -26,20 +28,117 @@ public class CLI {
                 loginMenu();
                 break;
             case 2:
-                register();
-                break;
+                loginAsStudent();
             case 3:
+                registerMenu();
+                break;
+            case 4:
                 exit();
                 break;
         }
     }
+
+    private void loginAsStudent() {
+        System.out.println("Enter ID:");
+        String id = scanner.nextLine();
+        boolean succ= manager.loginAsStudent(id);
+        if(succ){
+            System.out.println("Login successful!");
+            loggedInStudentMenu();
+        }
+        else
+        {
+            System.out.println("Invalid details, sorry!");
+            mainMenu();
+        }
+    }
+
+    private void loggedInStudentMenu() {
+
+        System.out.println("1) Register project \n2) view site \n3) Logout \n4) Exit");
+
+        int choice = Integer.parseInt(scanner.nextLine());
+
+        switch (choice){
+            case 1:
+                registerProject();
+                break;
+            case 2:
+                viewSite();
+                break;
+            case 3:
+                manager.logoutStudent();
+                mainMenu();
+                break;
+            case 4:
+                exit();
+                break;
+        }
+    }
+
+    private void viewSite() {
+        System.out.println("Enter Project ID :");
+        int idProject = Integer.parseInt(scanner.nextLine());
+        Project pro=manager.getProject(idProject);
+        System.out.println(pro);
+        loggedInStudentMenu();
+    }
+
+    private void registerProject() {
+        List<Project> projects=manager.getProjects();
+        for(Project p: projects){
+            System.out.println(p);
+            System.out.println("----------------------");
+        }
+        System.out.println("Enter Project ID :");
+        int idProject = Integer.parseInt(scanner.nextLine());
+        //TODO check if exists
+        System.out.println("Enter Your ID:");
+        String idStudent = scanner.nextLine();
+        System.out.println("Enter Your teammates ID (-1 to finish):");
+        List<String> teammatesIds=new ArrayList<>();
+        while (true){
+            String id= scanner.nextLine();
+            if(id.equals("-1"))
+                break;
+            teammatesIds.add(id);
+        }
+        System.out.println("Enter moderator name:");
+        String nameModerator = scanner.nextLine();
+
+        System.out.println("Are you sure about that? (y/n)");
+        String choice = scanner.nextLine();
+
+        switch (choice){
+            case "y":
+                break;
+            case "n":
+                addProjectMenu();
+                break;
+            default:
+                break;
+        }
+        int code= manager.registerToProject(idProject,idStudent,teammatesIds,nameModerator);
+        if(code==-1){
+            System.out.println("Error: Insufficient amount of teammates");
+            loggedInStudentMenu();
+        }
+        else if(code==-2)
+        {
+            System.out.println("Error: project is already in progress");
+            loggedInStudentMenu();
+        }
+        System.out.println("Registration successful");
+        loggedInStudentMenu();
+    }
+
 
     private void exit() {
         System.exit(0);
 
     }
 
-    private void register() {
+    private void registerMenu() {
 
         System.out.println("First name:");
         String firstName = scanner.nextLine();

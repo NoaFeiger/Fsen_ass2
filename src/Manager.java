@@ -1,11 +1,12 @@
 import java.time.LocalDate;
+import java.util.List;
 
 public class Manager {
 
     private Data data = new Data();
     private User currentUser;
     private int currProjCode;
-
+    private String currentStudent;
 
     public Manager(){
         this.currProjCode = 1;
@@ -15,7 +16,6 @@ public class Manager {
     public boolean login(String email, String password){
 
         User user = data.getUser(email, password);
-
         if (user != null){
             currentUser = user;
             return true;
@@ -37,12 +37,9 @@ public class Manager {
         return currentUser;
     }
 
-    public void setCurrentUser(User currentUser) {
-        this.currentUser = currentUser;
-    }
 
     public void logout(){
-        setCurrentUser(null);
+        this.currentUser = currentUser;
     }
 
     public int addProject(String projectName, String description, int expectedDuration, User currentUser){
@@ -74,5 +71,37 @@ public class Manager {
 
         return proj.getStatus();
 
+    }
+
+    public boolean loginAsStudent(String id) {
+        boolean exists=data.existsStudent(id);
+        if (exists){
+            currentStudent = id;
+            return true;
+        }
+        return false;
+    }
+
+    public void logoutStudent() {
+        this.currentStudent=null;
+    }
+
+    public List<Project> getProjects() {
+        return data.getProjects();
+    }
+
+    public int registerToProject(int idProject, String idStudent, List<String> teammatesIds, String nameModerator) {
+        if(teammatesIds.size()<1)
+            return -1;
+        if(checkStatus(idProject)== Project.Status.IN_PROGRESS)
+            return  -2;
+       //TODO check - register to not approved project
+        Project pro=data.getProjectByCode(idProject);
+        pro.approve();
+        return pro.getCode();
+    }
+
+    public Project getProject(int idProject) {
+        return data.getProjectByCode(idProject);
     }
 }
