@@ -1,4 +1,4 @@
-import java.sql.SQLOutput;
+import javax.swing.text.MutableAttributeSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -18,7 +18,7 @@ public class CLI {
     public void mainMenu(){
 
         System.out.println("Home page!\n" +
-                            "Please choose one of the following options:");
+                "Please choose one of the following options:");
         System.out.println("1) Login submitter \n2) Login As Student \n3) Register\n4) Exit");
 
         int choice = Integer.parseInt(scanner.nextLine());
@@ -118,6 +118,7 @@ public class CLI {
             default:
                 break;
         }
+        
         int code= manager.registerToProject(idProject,idStudent,teammatesIds,nameModerator);
         if(code==-1){
             System.out.println("Error: Insufficient amount of teammates");
@@ -260,3 +261,4 @@ public class CLI {
 
 
 }
+

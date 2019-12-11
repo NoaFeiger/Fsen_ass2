@@ -1,10 +1,16 @@
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Project {
+public class Project implements Subject {
 
     public void approve() {
-        this.status=Status.IN_PROGRESS;
+        setStatus(Status.IN_PROGRESS);
     }
+
+    List<Observer> observers = new ArrayList<>();
+
+
 
 
     enum Status {
@@ -23,6 +29,7 @@ public class Project {
     private User submitter;
 
     public Project(String name, String description, int expectedDuration, int code, User submitter){
+        super();
         this.name = name;
         this.description = description;
         this.expectedDuration = expectedDuration;
@@ -41,8 +48,22 @@ public class Project {
         return name;
     }
 
+
+    @Override
+    public void attach(Observer observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void notifyAllObservers() {
+        for (Observer observer : observers) {
+            observer.update(this);
+        }
+    }
+
     public void setStatus(Status status) {
         this.status = status;
+        notifyAllObservers();
     }
 
     public LocalDate getCreationDate() {
@@ -60,4 +81,6 @@ public class Project {
     public Status getStatus() {
         return status;
     }
+
+
 }

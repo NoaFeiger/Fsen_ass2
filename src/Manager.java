@@ -6,7 +6,7 @@ public class Manager {
     private Data data = new Data();
     private User currentUser;
     private int currProjCode;
-    private String currentStudent;
+    private String currentStudentId;
 
     public Manager(){
         this.currProjCode = 1;
@@ -39,7 +39,7 @@ public class Manager {
 
 
     public void logout(){
-        this.currentUser = currentUser;
+        this.currentUser = null;
     }
 
     public int addProject(String projectName, String description, int expectedDuration, User currentUser){
@@ -76,14 +76,23 @@ public class Manager {
     public boolean loginAsStudent(String id) {
         boolean exists=data.existsStudent(id);
         if (exists){
-            currentStudent = id;
+
+            currentStudentId = id;
+
+            Student s = data.getStudentById(id);
+
+            if (s.getFeed() != null) {
+                System.out.println(s.getFeed());
+                s.setFeed(null);
+            }
+
             return true;
         }
         return false;
     }
 
     public void logoutStudent() {
-        this.currentStudent=null;
+        this.currentStudentId=null;
     }
 
     public List<Project> getProjects() {
