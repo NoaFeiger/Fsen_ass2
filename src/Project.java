@@ -58,7 +58,9 @@ public class Project implements Subject {
 
     public void setStatus(Status status) {
         this.status = status;
-        notifyAllObservers();
+
+        if (status == Status.APPROVED)
+            notifyAllObservers();
     }
 
     public LocalDate getCreationDate() {
