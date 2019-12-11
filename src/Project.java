@@ -3,6 +3,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Project implements Subject {
+
+
     enum Status {
         UNDER_REVIEW,
         APPROVED,
@@ -17,7 +19,7 @@ public class Project implements Subject {
     private LocalDate creationDate;
     private int code;
     private User submitter;
-
+    private String moderator;
     public Project(String name, String description, int expectedDuration, int code, User submitter){
         super();
         this.name = name;
@@ -29,7 +31,9 @@ public class Project implements Subject {
         this.creationDate = LocalDate.now();
     }
 
-
+    public void setNameModerator(String nameModerator) {
+        this.moderator=nameModerator;
+    }
     @Override
     public String toString(){
         return "projectID:"+code+"\n nameProject:"+name+"\n description:"+description+"\n expectedDuration:"+

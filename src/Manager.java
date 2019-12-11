@@ -107,6 +107,7 @@ public class Manager {
        //TODO check - register to not approved project
         Project pro=data.getProjectByCode(idProject);
         pro.setStatus(Project.Status.IN_PROGRESS);
+        pro.setNameModerator(nameModerator);
         return pro.getCode();
     }
 
