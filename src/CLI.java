@@ -19,7 +19,7 @@ public class CLI {
 
         System.out.println("Home page!\n" +
                 "Please choose one of the following options:");
-        System.out.println("1) Login submitter \n2) Login As Student \n3) Register\n4) Exit");
+        System.out.println("1) Login submitter \n2) Login as student \n3) Register as submitter\n4) Approve project head of department \n5) Exit");
 
         int choice = Integer.parseInt(scanner.nextLine());
 
@@ -33,9 +33,21 @@ public class CLI {
                 registerMenu();
                 break;
             case 4:
+                approveProjectMenu();
+                break;
+
+            case 5:
                 exit();
                 break;
         }
+    }
+
+    private void approveProjectMenu() {
+        System.out.println("Enter ID:");
+        int id = Integer.parseInt(scanner.nextLine());
+        manager.approveProjectByHeadOfDepartment(id);
+        System.out.println("Project approved");
+        mainMenu();
     }
 
     private void loginAsStudent() {
@@ -55,7 +67,7 @@ public class CLI {
 
     private void loggedInStudentMenu() {
 
-        System.out.println("1) Register project \n2) view site \n3) Logout \n4) Exit");
+        System.out.println("1) Register project \n2) view site \n3) Notification System \n4) Logout \n5) Exit");
 
         int choice = Integer.parseInt(scanner.nextLine());
 
@@ -67,20 +79,36 @@ public class CLI {
                 viewSite();
                 break;
             case 3:
+                NotificationSystem();
+                break;
+
+            case 4:
                 manager.logoutStudent();
                 mainMenu();
                 break;
-            case 4:
+            case 5:
                 exit();
                 break;
         }
+    }
+
+    private void NotificationSystem() {
+        System.out.println("Enter ID Project :");
+        int id =Integer.parseInt(scanner.nextLine());
+        System.out.println("Enter Type of notification (1=email 2=sms) :");
+        int choose = Integer.parseInt(scanner.nextLine());
+        manager.subscribeNotification(id, choose);
+        System.out.println("Register successful!");
+        loggedInStudentMenu();
+
     }
 
     private void viewSite() {
         System.out.println("Enter Project ID :");
         int idProject = Integer.parseInt(scanner.nextLine());
         Project pro=manager.getProject(idProject);
-        System.out.println(pro);
+        if (pro == null) System.out.println("No such project exists");
+        else System.out.println(pro);
         loggedInStudentMenu();
     }
 

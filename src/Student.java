@@ -16,10 +16,12 @@ public class Student implements Observer{
     @Override
     public void update(Subject subject) {
         Project project = (Project) subject;
-        feed = "" + preferences.get(project) + ":\n" + project.getName() + ", id: " + project.getCode() +
+        feed = "The project: " + preferences.get(project) + ":\n" + project.getName() + ", id: " + project.getCode() +
                 " has been approved!";
     }
-
+    public  void addPreferences (Project p, String type){
+        preferences.put(p,type);
+    }
     public String getId() {
         return id;
     }

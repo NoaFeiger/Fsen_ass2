@@ -113,4 +113,19 @@ public class Manager {
     public Project getProject(int idProject) {
         return data.getProjectByCode(idProject);
     }
+
+    public void subscribeNotification(int id, int choose) {
+        Student stu=data.getStudentById(currentStudentId);
+        Project pro= data.getProjectByCode(id);
+        pro.attach(stu);
+        String type = choose == 1 ? "email" : "sms";
+        stu.addPreferences(pro,type);
+
+
+    }
+
+    public void approveProjectByHeadOfDepartment(int id) {
+        Project p=data.getProjectByCode(id);
+        p.setStatus(Project.Status.APPROVED);
+    }
 }
