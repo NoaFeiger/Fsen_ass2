@@ -3,23 +3,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Project implements Subject {
-
-    public void approve() {
-        setStatus(Status.IN_PROGRESS);
-    }
-
-    List<Observer> observers = new ArrayList<>();
-
-
-
-
     enum Status {
         UNDER_REVIEW,
         APPROVED,
         REJECTED,
         IN_PROGRESS
     }
-
+    List<Observer> observers = new ArrayList<>();
     private String name;
     private String description;
     private int expectedDuration;
@@ -38,6 +28,7 @@ public class Project implements Subject {
         this.status = Status.UNDER_REVIEW;
         this.creationDate = LocalDate.now();
     }
+
 
     @Override
     public String toString(){
