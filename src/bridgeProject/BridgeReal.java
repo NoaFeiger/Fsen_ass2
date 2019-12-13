@@ -1,5 +1,6 @@
 package bridgeProject;
 
+import Implementation.Data;
 import Implementation.Manager;
 import Implementation.User;
 import acptTests.auxiliary.DBRegisteredProjectInfo;
@@ -8,6 +9,11 @@ import acptTests.auxiliary.DBSuggestedProjectInfo;
 public class BridgeReal implements BridgeProject{
 
     Manager manager = new Manager();
+    Data data = new Data();
+
+    public BridgeReal(){
+
+    }
 
     @Override
     public void registerNewTechnicalAdviser(String user, String password) {

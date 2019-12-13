@@ -7,6 +7,8 @@ import java.util.List;
 public class Project implements Subject {
 
 
+
+
     enum Status {
         UNDER_REVIEW,
         APPROVED,
@@ -79,6 +81,10 @@ public class Project implements Subject {
 
     public Status getStatus() {
         return status;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
 

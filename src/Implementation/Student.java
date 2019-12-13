@@ -19,7 +19,7 @@ public class Student implements Observer{
     public void update(Subject subject) {
         Project project = (Project) subject;
         String msg = "; The project: " + preferences.get(project) + ":\n" + project.getName() + ", id: " + project.getCode() +
-                " has been approved!";
+                " has been approved! URL: " + "www." + project.getCode() + ".com. Description: " +project.getDescription() + ". Submitter details: " + project.getSubmitter().getFirstName() + " " + project.getSubmitter().getLastName() + ", " + project.getSubmitter().getEmail();
         if (feed == null) feed = msg;
         else feed += msg;
     }

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static acptTests.ProjectTest.*;
+import static acptTests.ProjectTest.USER_USER;
 
 public class Data {
 
@@ -20,7 +21,6 @@ public class Data {
         students.add(new Student("2222"));
         students.add(new Student("3333"));
         students.add(new Student("4444"));
-
 
         User u1 = new User(DBData.names[0][USER_FirstName], DBData.names[0][USER_LastName], "stam@ibm.com", "03-7777777", "IBM", DBData.users[0][USER_PASS]);
         u1.setUsername(DBData.users[0][USER_USER]);
