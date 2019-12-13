@@ -1,6 +1,11 @@
-import java.awt.image.PixelGrabber;
+package Implementation;
+
+import acptTests.auxiliary.DBData;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import static acptTests.ProjectTest.*;
 
 public class Data {
 
@@ -15,6 +20,23 @@ public class Data {
         students.add(new Student("2222"));
         students.add(new Student("3333"));
         students.add(new Student("4444"));
+
+
+        User u1 = new User(DBData.names[0][USER_FirstName], DBData.names[0][USER_LastName], "stam@ibm.com", "03-7777777", "IBM", DBData.users[0][USER_PASS]);
+        u1.setUsername(DBData.users[0][USER_USER]);
+        User u2 = new User(DBData.names[1][USER_FirstName], DBData.names[1][USER_LastName], "stam@microsoft.com", "03-6666666", "MicroSoft", DBData.users[1][USER_PASS]);
+        u2.setUsername(DBData.users[1][USER_USER]);
+        User u3 = new User(DBData.names[2][USER_FirstName], DBData.names[2][USER_LastName], "stam@ibm.com", "03-7777777", "IBM", DBData.users[2][USER_PASS]);
+        u3.setUsername(DBData.users[2][USER_USER]);
+        User u4 = new User(DBData.names[0][USER_FirstName], DBData.names[0][USER_LastName], "stam@ibm.com", "03-7777777", "IBM", DBData.users[0][USER_PASS]);
+        u4.setUsername(DBData.users[0][USER_USER]);
+
+        users.add(u1);
+        users.add(u2);
+        users.add(u3);
+        users.add(u4);
+
+
 
     }
 
@@ -84,5 +106,18 @@ public class Data {
 
     public List<Project> getProjects() {
         return projects;
+    }
+
+
+    public boolean existsUser(User currentUser) {
+
+        for (User u: users){
+            if (u.equals(currentUser))
+                return true;
+        }
+
+        return false;
+
+
     }
 }

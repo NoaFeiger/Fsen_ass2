@@ -1,3 +1,5 @@
+package Implementation;
+
 public class LogoSiteElement extends SiteDesign {
 
     private String filename;

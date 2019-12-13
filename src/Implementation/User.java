@@ -1,3 +1,5 @@
+package Implementation;
+
 public class User {
 
     private String firstName;
@@ -6,6 +8,7 @@ public class User {
     private String phoneNumber;
     private String password;
     private String organization;
+    private String username;
 
     public User(String firstName, String lastName, String email, String phoneNumber, String organization, String password) {
         this.firstName = firstName;
@@ -35,5 +38,23 @@ public class User {
 
     public String getOrganization() {
         return organization;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public boolean equals(User other){
+        return this.username.equals(other.getUsername()) && this.getFirstName().equals(other.getFirstName()) && this.getLastName().equals(other.getLastName())
+                && this.getEmail().equals(other.getEmail())
+                && this.getPhoneNumber().equals(other.getPhoneNumber()) && this.getPassword().equals(other.getPassword());
+    }
+
+    private String getUsername() {
+        return this.username;
+    }
+
+    public void setUsername(String user) {
+        this.username = user;
     }
 }

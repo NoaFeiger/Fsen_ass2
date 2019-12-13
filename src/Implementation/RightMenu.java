@@ -1,3 +1,5 @@
+package Implementation;
+
 public class RightMenu extends SiteMenu {
 
     public RightMenu(Site site) {

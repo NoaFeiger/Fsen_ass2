@@ -1,3 +1,5 @@
+package Implementation;
+
 public class LinkSiteElement extends SiteElement {
 
     private String url;

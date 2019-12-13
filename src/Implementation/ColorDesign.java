@@ -1,3 +1,5 @@
+package Implementation;
+
 public class ColorDesign extends SiteDesign {
 
     private String color;

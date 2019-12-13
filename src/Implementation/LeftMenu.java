@@ -1,3 +1,5 @@
+package Implementation;
+
 public class LeftMenu extends SiteMenu {
 
     public LeftMenu(Site site) {

@@ -1,4 +1,5 @@
-import javax.swing.text.MutableAttributeSet;
+package Implementation;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -46,7 +47,7 @@ public class CLI {
         System.out.println("Enter ID:");
         int id = Integer.parseInt(scanner.nextLine());
         manager.approveProjectByHeadOfDepartment(id);
-        System.out.println("Project approved");
+        System.out.println("Implementation.Project approved");
         mainMenu();
     }
 
@@ -93,7 +94,7 @@ public class CLI {
     }
 
     private void NotificationSystem() {
-        System.out.println("Enter ID Project :");
+        System.out.println("Enter ID Implementation.Project :");
         int id =Integer.parseInt(scanner.nextLine());
         System.out.println("Enter Type of notification (1=email 2=sms) :");
         int choose = Integer.parseInt(scanner.nextLine());
@@ -104,7 +105,7 @@ public class CLI {
     }
 
     private void viewSite() {
-        System.out.println("Enter Project ID :");
+        System.out.println("Enter Implementation.Project ID :");
         int idProject = Integer.parseInt(scanner.nextLine());
         Project pro=manager.getProject(idProject);
         if (pro == null) System.out.println("No such project exists");
@@ -118,7 +119,7 @@ public class CLI {
             System.out.println(p);
             System.out.println("----------------------");
         }
-        System.out.println("Enter Project ID :");
+        System.out.println("Enter Implementation.Project ID :");
         int idProject = Integer.parseInt(scanner.nextLine());
         //TODO check if exists
         System.out.println("Enter Your ID:");
@@ -235,7 +236,7 @@ public class CLI {
 
     private void checkStatus() {
 
-        System.out.println("Project code:");
+        System.out.println("Implementation.Project code:");
         int code = Integer.parseInt(scanner.nextLine());
 
         Project.Status status = manager.checkStatus(code);
@@ -253,7 +254,7 @@ public class CLI {
 
     private void addProjectMenu() {
 
-        System.out.println("Project name:");
+        System.out.println("Implementation.Project name:");
         String projectName = scanner.nextLine();
         System.out.println("Description:");
         String description = scanner.nextLine();
@@ -277,7 +278,7 @@ public class CLI {
 
         int prodCode = manager.addProject(projectName, description, expectedDuration, currentUser);
 
-        if (prodCode == -1) {
+        if (prodCode == 0) {
             System.out.println("Invalid details, sorry!");
             loggedInMenu();
         }

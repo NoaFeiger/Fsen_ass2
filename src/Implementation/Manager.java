@@ -1,3 +1,5 @@
+package Implementation;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -44,12 +46,32 @@ public class Manager {
 
     public int addProject(String projectName, String description, int expectedDuration, User currentUser){
 
+        if (!data.existsUser(currentUser)) return 0;
+
+        if (currentUser.getFirstName() == null || currentUser.getFirstName().equals("") )
+            return 0;
+
+        if (currentUser.getLastName() == null || currentUser.getLastName().equals("") )
+            return 0;
+
+        if (currentUser.getPhoneNumber() == null || currentUser.getPhoneNumber().equals("") )
+            return 0;
+
+        if (currentUser.getEmail() == null || currentUser.getEmail().equals("") )
+            return 0;
+
+        if (projectName == null || projectName.equals("") )
+            return 0;
+
+
+
+
         if (expectedDuration < 200 || expectedDuration > 300)
-            return -1;
+            return 0;
 
         boolean isDuplicate = data.checkDuplicateProject(projectName, LocalDate.now().getYear(), currentUser.getOrganization(),
                 currentUser.getFirstName(), currentUser.getLastName());
-        if (isDuplicate) return -1;
+        if (isDuplicate) return 0;
 
         int projCode = currProjCode;
 
