@@ -6,19 +6,11 @@ import java.util.Map;
 public class Main {
 
     public static void main(String[] args){
-
-        CLIQuestion1();
-
-        // siteQuestion4();
+        siteQuestion4();
 
     }
 
-    public static void CLIQuestion1(){
-        CLI cli = new CLI();
-        cli.mainMenu();
-    }
-
-    public static void siteQuestion4(){
+    private static void siteQuestion4(){
         // question 4
 
         Map<Integer, Site> sites = new HashMap<>();
@@ -28,7 +20,7 @@ public class Main {
         sites.put(3, new SizeDesign(new MusicSiteElement(new RightMenu(new BasicSite()), "sadness.mp3"), 25));
 
         // project code
-        int projCode = 3;
+        int projCode = 2;
 
         System.out.println(sites.get(projCode).getContent());
     }
