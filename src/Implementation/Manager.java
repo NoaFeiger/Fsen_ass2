@@ -122,10 +122,13 @@ public class Manager {
     }
 
     public int registerToProject(int idProject, String idStudent, List<String> teammatesIds, String nameModerator) {
+
+        if (nameModerator == null || nameModerator.equals("")) return 0;
+
         if(teammatesIds.size()<1)
-            return -1;
+            return 0;
         if(checkStatus(idProject)== Project.Status.IN_PROGRESS)
-            return  -2;
+            return  0;
        //TODO check - register to not approved project
         Project pro=data.getProjectByCode(idProject);
         pro.setStatus(Project.Status.IN_PROGRESS);

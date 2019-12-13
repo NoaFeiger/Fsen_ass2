@@ -33,6 +33,8 @@ public class BridgeReal implements BridgeProject{
 
     @Override
     public int registerToProject(String user, String pass, DBRegisteredProjectInfo registeredProject) {
-        return 0;
+
+        return manager.registerToProject(registeredProject.projectId, registeredProject.studentList.get(0), registeredProject.studentList.subList(1, registeredProject.studentList.size()), registeredProject.academicAdviser);
+
     }
 }
