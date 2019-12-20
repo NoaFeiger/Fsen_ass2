@@ -8,11 +8,13 @@ public class Student implements Observer{
     private String feed;
     private String id;
     private Map<Project, String> preferences;
+    private boolean authorized;
 
     public Student(String id){
         this.id = id;
         this.feed = null;
         this.preferences = new HashMap<>();
+        this.authorized = false;
     }
 
     @Override
@@ -36,5 +38,9 @@ public class Student implements Observer{
 
     public void setFeed(String feed) {
         this.feed = feed;
+    }
+
+    public void setAuthorized(boolean authorized) {
+        this.authorized = authorized;
     }
 }

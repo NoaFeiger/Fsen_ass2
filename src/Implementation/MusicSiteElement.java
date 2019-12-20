@@ -9,7 +9,8 @@ public class MusicSiteElement extends SiteElement {
         this.filename = filename;
     }
 
-    public String getContent() {
-        return site.getContent() + "music of file " + filename + " is played; ";
+    public String getContent(boolean authorized) {
+        if (authorized) return site.getContent(authorized) + "music of file " + filename + " is played; ";
+        return site.getContent(authorized);
     }
 }

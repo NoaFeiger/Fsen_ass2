@@ -9,7 +9,8 @@ public class LogoSiteElement extends SiteDesign {
         this.filename = filename;
     }
 
-    public String getContent() {
-        return site.getContent() + "logo of file " + filename + " is displayed; ";
+    public String getContent(boolean authorized) {
+        if (authorized) return site.getContent(authorized) + "logo of file " + filename + " is displayed; ";
+        else return site.getContent(authorized);
     }
 }

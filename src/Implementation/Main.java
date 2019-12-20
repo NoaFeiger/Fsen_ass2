@@ -20,8 +20,11 @@ public class Main {
         sites.put(3, new SizeDesign(new MusicSiteElement(new RightMenu(new BasicSite()), "sadness.mp3"), 25));
 
         // project code
-        int projCode = 2;
+        int projCode = 1;
 
-        System.out.println(sites.get(projCode).getContent());
+        // is the student authorized
+        boolean authorized = true;
+
+        System.out.println(sites.get(projCode).getContent(authorized));
     }
 }

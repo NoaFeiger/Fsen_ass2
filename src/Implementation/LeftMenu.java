@@ -7,7 +7,8 @@ public class LeftMenu extends SiteMenu {
     }
 
     @Override
-    public String getContent() {
-        return site.getContent() + "; Menu is on the left side; ";
+    public String getContent(boolean authorized) {
+        if (authorized) return site.getContent(authorized) + "; Menu is on the left side; ";
+        return site.getContent(authorized);
     }
 }

@@ -10,7 +10,13 @@ public class ColorDesign extends SiteDesign {
     }
 
     @Override
-    public String getContent() {
-        return site.getContent() + "color: " + color + "; ";
+    public String getContent(boolean authorized) {
+
+        if (authorized) {
+            return site.getContent(authorized) + "color: " + color + "; ";
+        }
+        return site.getContent(authorized);
+
+
     }
 }

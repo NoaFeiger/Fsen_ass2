@@ -10,7 +10,11 @@ public class FontDesign extends SiteDesign {
     }
 
     @Override
-    public String getContent() {
-        return site.getContent() + "; font: " + font + "; ";
+    public String getContent(boolean authorized) {
+
+        if (authorized) {
+            return site.getContent(authorized) + "; font: " + font + "; ";
+        }
+        else return site.getContent(authorized);
     }
 }

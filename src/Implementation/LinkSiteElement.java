@@ -9,7 +9,8 @@ public class LinkSiteElement extends SiteElement {
         this.url = url;
     }
 
-    public String getContent() {
-        return site.getContent() + "link to site " + url + " is displayed; ";
+    public String getContent(boolean authorized) {
+        if (authorized) return site.getContent(authorized) + "link to site " + url + " is displayed; ";
+        return site.getContent(authorized);
     }
 }

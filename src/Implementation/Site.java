@@ -2,6 +2,6 @@ package Implementation;
 
 public interface Site {
 
-    String getContent();
+    String getContent(boolean authorized);
 
 }

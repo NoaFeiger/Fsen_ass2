@@ -10,7 +10,13 @@ public class BackgroundDesign extends SiteDesign {
     }
 
     @Override
-    public String getContent() {
-        return site.getContent() + "; background file: " + filename + "; ";
+    public String getContent(boolean authorized) {
+
+        if (authorized) {
+            return site.getContent(authorized) + "; background file: " + filename + "; ";
+        }
+        return site.getContent(authorized);
+
+
     }
 }

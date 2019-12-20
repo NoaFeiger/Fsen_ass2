@@ -10,7 +10,8 @@ public class SizeDesign extends Tool {
     }
 
     @Override
-    public String getContent() {
-        return site.getContent() + "; font size: " + size + "; ";
+    public String getContent(boolean authorized) {
+        if (authorized) return site.getContent(authorized) + "; font size: " + size + "; ";
+        return site.getContent(authorized);
     }
 }
